@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Of from '../component/Of';
+import * as IoIcons from 'react-icons/hi';
 
 class Addof extends Component {
     constructor(props){
@@ -12,7 +13,19 @@ class Addof extends Component {
         this.getEncours = this.getEncours.bind(this);
     }
     componentDidMount(){
-        this.getEncours()
+       
+        const token  = window.localStorage.getItem('token');
+        const role  = window.localStorage.getItem('role');
+        
+        if (token != null && (role!="user")) {
+            console.log("connected");
+            this.getEncours();
+        } else {
+            this.props.history.push('/authentification');
+            window.localStorage.clear();
+
+        }
+        
     }
     produit(e){
         this.setState({
@@ -24,15 +37,18 @@ class Addof extends Component {
         this.setState({
             of: e.target.value
         })
-
     }
     getEncours(){
+        var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("authenticated", window.localStorage.getItem('token'));
         var requestOptions = {
             method: 'GET',
+            headers: myHeaders,
             redirect: 'follow'
           };
           
-          fetch("http://localhost:8070/encours", requestOptions)
+          fetch("http://localhost:8070/app/encours", requestOptions)
             .then(response => response.text())
             .then(result => {console.log(result)
                 var data= JSON.parse(result);
@@ -43,7 +59,8 @@ class Addof extends Component {
     }
     newOf(){
         var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("authenticated", window.localStorage.getItem('token'));
 
 var raw = JSON.stringify({"produit":this.state.produit,"ordreDeFabrication":this.state.of});
 
@@ -63,19 +80,23 @@ fetch("http://localhost:8070/addprod", requestOptions)
     render() {
         return (
             <div class="container">
-                <div class="row">
+                
+                <br/>
+                <div className="row justify-content-md-center">
+                    <input type="text" placeholder="nom produit" value={this.state.produit} onChange={(e)=>{this.produit(e)}} />
+                    <input type="text" placeholder="Of" value={this.state.of} onChange={(e)=>{this.of(e)}} ></input>
+                    <button type="button" className="btn btn-success" onClick={()=>{this.newOf()}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Add OF</button>
+                </div>
+                <br></br>
+                <div className="row">
             {
                 this.state.encours.map((of)=>{
+                    console.log(of);
                     return <Of produit={of.produit} orderf={of.ordreDeFabrication} composants={of.composants} id={of._id} getall={this.getEncours} />
                 })
             }
             
-            </div>
-            
-            <h1>Addof work</h1>
-                <input type="text" placeholder="nom produit" value={this.state.produit} onChange={(e)=>{this.produit(e)}} />
-                <input type="text" placeholder="Of" value={this.state.of} onChange={(e)=>{this.of(e)}} ></input>
-                <button onClick={()=>{this.newOf()}}>add of</button>
+                </div>
             </div>
         );
     }

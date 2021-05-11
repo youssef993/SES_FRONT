@@ -5,14 +5,16 @@ class Comp extends Component {
         super(props);
         this.state={
             article: props.article,
-            sn: props.sn
+            sn: props.sn,
+            vue: props.datavue
         }
     }
     render() {
         return (
             <tr>
-                <td>Serial Number: {this.state.sn}</td>
-                <td>Article: {this.state.article}</td>
+                <td>SN: {this.state.sn}</td>
+                <td>{this.state.article}</td>
+                <td><button>bouton</button> </td>
             </tr>
         );
     }

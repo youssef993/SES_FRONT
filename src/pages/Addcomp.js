@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as IoIcons from 'react-icons/hi';
 
 class Addcomp extends Component {
     constructor(props){
@@ -7,6 +8,18 @@ class Addcomp extends Component {
             id1:'',
             article:''
         }
+    }
+    componentDidMount(){
+        const token  = window.localStorage.getItem('token');
+        const role  = window.localStorage.getItem('role');
+
+        if (token != null && (role== "admin"||role=="magazinier")) {
+            console.log("connected");
+        } else {
+            this.props.history.push('/authentification');
+            window.localStorage.clear();
+        }
+        
     }
     article(e){
         this.setState({
@@ -20,7 +33,8 @@ class Addcomp extends Component {
     }
     newcomp(){
         var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("authenticated", window.localStorage.getItem('token'));
 
 var raw = JSON.stringify({"article":this.state.article,"ID1": this.state.id1});
 
@@ -31,19 +45,28 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:8070/ajout", requestOptions)
+fetch("http://localhost:8070/app/ajout", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
     }
     render() {
         return (
-             <div>
+            <div className="container">
+                <br></br>
+                <div className="row justify-content-md-center">
+                <div className="col-sm-7">
+                <h1>add component:</h1>
+                </div>
+                <div className="col-sm-7">
                 <input type="text" placeholder="article" value={this.state.article} onChange={(e)=>{this.article(e)}} />
                 <input type="text" placeholder="SN" value={this.state.id1} onChange={(e)=>{this.id1(e)}} ></input>
-                <button onClick={()=>{this.newcomp()}}>add comp</button>
+                <div className="col-sm-7" style={{height: '10px'}}></div>
+                <div className="col-sm-7">
+                <button type="button" class="btn btn-success" onClick={()=>{this.newcomp()}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Add Component</button>
+                </div>
             </div>
-       
+            </div></div>
         );
     }
 }

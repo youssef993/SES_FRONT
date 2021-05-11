@@ -11,3 +11,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.sideBar{
+  height: 100vh;
+  margin-left: -190px;
+  margin-top: -85px;
+  padding-top: 70px;
+  background-color: #777777;
+  position: fixed;
+}
+.sidebartxt{
+  color: white;
+  font-style: italic;
+  font-size: 30px;
+}
+.sidebartxt:hover{
+  background-color: dimgrey;
+  color: white;
+  margin-left: 40px;
+  border-radius: 30% 2%;
+}
+@keyframes animate{
+  from { border-radius: white; }
+  to { border-radius: 2.25rem }
+}
+
+.btn2:hover{
+  
+  transition: border-radius 2.5s ease-in-out ;
+  animation-name: animate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  
+}
+.inputlogin{
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  outline: 0;
+}
+.inputlogin:focus{
+  border-radius: 10px;
+}
+.btnLogIn{
+  width: 170px;
+  
+}
+.bg{
+  background-color: #acdbff;
+  width: 360px;
+  height: 330px;
+}
