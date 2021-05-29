@@ -56,8 +56,6 @@ class ListProduit extends Component {
     newpr(){var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("authenticated", window.localStorage.getItem('token'));
-    var myHeaders = new Headers();
-     myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({"produit":this.state.produit});
 
@@ -79,14 +77,19 @@ this.setState({
         }   
     render() {
         return (
-                <div className="container">
+
+                <div className="container" style={{textAlign: 'center'}}>
                     <br></br>
                     <div className="row justify-content-md-center">
+                        <div className='col-4'>
                 <input type="text" placeholder="produit" value={this.state.produit} onChange={(e)=>{this.produit(e)}} />
                 
-                <button type="button" class="btn btn-success" onClick={()=>{this.newpr()}}><IoIcons.MdControlPoint style={{fontSize: '25px'}}/> Add Produit</button>
+                <button type="button" class="btn btn-success" onClick={()=>{this.newpr()}}style={{marginLeft:'7px'}}><IoIcons.MdControlPoint style={{fontSize: '25px'}}/> Add Produit</button>
                 </div>
+                </div>
+                <div  className="row justify-content-center" style={{height:'25px'}}></div>
                 <div className="row justify-content-md-center">   
+                <div className='col-8'>
                 <table class="table table-hover">
                     <thead>
                         <th scope="col">PRODUIT</th>
@@ -100,7 +103,7 @@ this.setState({
                 }
                 </tbody>
                 </table>
-                </div>
+                </div></div>
             </div>
         );
        }

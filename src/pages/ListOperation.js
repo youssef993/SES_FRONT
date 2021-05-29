@@ -51,18 +51,21 @@ class ListOperation extends Component {
            imagepath(e){var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("authenticated", window.localStorage.getItem('token'));
-            var formdata = new FormData();
-            var file = e.target.files;
-            console.log(file);
-            formdata.append("operationImg", file[0], file[0].name);
+            const formdata = new FormData();
+            const files = e.target.files;
+            
+  console.log('files', files)
+            console.log(files[0]);
+            formdata.append("operationImg", files[0], files[0].name);
+            console.log(formdata);
 
             var requestOptions = {
-            method: 'POST',
+            method: 'POST',    
             body: formdata,
             redirect: 'follow'
             };
 
-           fetch("http://localhost:8070/app/app/upload/"+ this.state.produit.produit+this.state.opera+this.state.ordre, requestOptions)
+           fetch("http://localhost:8070/upload/"+ this.state.produit.produit+this.state.opera+this.state.ordre, requestOptions)
             .then(response => response.text())
             .then(result => {console.log(result);
             var data= JSON.parse(result);
@@ -135,9 +138,12 @@ class ListOperation extends Component {
         }
     render() {
         return (
+          <div>
+            <div style={{height:'80px'}}></div>
           <div className="container">
             
             <div className="row justify-content-md-center">
+              <div className='col-8'>
               <div class="input-group col-7">
                 <h1>add op </h1>
               </div>
@@ -164,9 +170,9 @@ class ListOperation extends Component {
                           return <Operation id= {op._id} operation={op.operation} produit={op.produit} ordre={op.ordre} img={op.imagepath} load={this.getOperation}/>
                       })
                     }
-                </div>
+                </div></div>
             </div>
-         </div>
+         </div></div>
         );
     }
 }

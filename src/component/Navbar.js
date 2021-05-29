@@ -25,8 +25,9 @@ function Navbar(props) {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <h1 style={{color: 'aliceblue',marginLeft: '420px'}}>  SIAME PRODUCT</h1>
-          <button type="button" class="btn btn-danger" style={{ marginLeft: '360px'}} onClick={deconnect}><IoIcons.FaPowerOff style={{fontSize: '25px'}}/><Link to="/authentification" style={{color: 'aquamarine'}}>Déconnexion</Link></button>
+          <img src="/logo.png" style={{height:'44px', position:"absolute", marginLeft: '65px',marginBottom:'-7px'}}></img>
+          <h1 style={{color: 'aliceblue',marginLeft: '755px',marginRight: '15px'}}>  SIAME PRODUCT</h1>
+          <button type="button" class="btn btn-danger"  onClick={deconnect}><IoIcons.FaPowerOff style={{fontSize: '25px'}}/><Link to="/authentification" style={{color: 'aquamarine'}}>Déconnexion</Link></button>
         </div>
         <nav hidden={props.role} className={sidebar ? 'nav-menu active' : 'nav-menu'}style={{zIndex: '1'}} >
           <ul className='nav-menu-items' onClick={showSidebar}>
@@ -37,7 +38,7 @@ function Navbar(props) {
             </li>
             {SidebarData.map((item, index) => {
               return (
-                <li  key={index} className={item.cName}>
+                <li hidden={(item.property == null)? window.localStorage.getItem('role')=== 'user': item.property } key={index} className={item.cName}>
                   <Link to={item.path}>
                     {item.icon}
                     <span>{item.title}</span>

@@ -52,21 +52,22 @@ fetch("http://localhost:8070/app/ajout", requestOptions)
     }
     render() {
         return (
-            <div className="container">
+            
+            <div className="container" style={{textAlign: 'center'}}>
                 <br></br>
                 <div className="row justify-content-md-center">
                 <div className="col-sm-7">
-                <h1>add component:</h1>
+                <h1>AJOUT COMPOSANTS:</h1>
                 </div>
                 <div className="col-sm-7">
                 <input type="text" placeholder="article" value={this.state.article} onChange={(e)=>{this.article(e)}} />
                 <input type="text" placeholder="SN" value={this.state.id1} onChange={(e)=>{this.id1(e)}} ></input>
-                <div className="col-sm-7" style={{height: '10px'}}></div>
-                <div className="col-sm-7">
-                <button type="button" class="btn btn-success" onClick={()=>{this.newcomp()}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Add Component</button>
+                <div className="col-sm-7" style={{height: '10px'}}></div></div>
+                <div>
+                <button type="button" class="btn btn-success" onClick={()=>{this.newcomp()}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Ajout Composant</button>
                 </div>
             </div>
-            </div></div>
+            </div>
         );
     }
 }

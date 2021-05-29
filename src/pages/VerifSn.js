@@ -74,10 +74,10 @@ class VerifSn extends Component {
                   </div>
                   </div>
                     <div class="row justify-content-md-center">
-
-                    <div style={{width: "20px"}}></div>
-                    <img hidden={this.state.afficheChek} src="/check.png" class="card-img-top" style={{height: "500px",width: "auto"}} alt="..."/>
-                    <img hidden={this.state.afficheWrong} src="/wrong.jpg" class="card-img-top" style={{height: "500px",width: "auto"}} alt="..."/>
+                     
+                    <div style={{width:"20px"}}></div>
+                    <img hidden={this.state.afficheChek} src="/check.png" class="card-img-top" style={{height: "300px",width: "auto"}} alt="..."/>
+                    <img hidden={this.state.afficheWrong} src="/wrong.png" class="card-img-top" style={{height: "273px",width: "auto"}} alt="..."/>
                     </div>
             </div>
         );

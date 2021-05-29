@@ -58,25 +58,27 @@ class Production extends Component {
         return (
             <div className="container">
                 <br/>
-                <div className="row justify-content-md-center"> 
-                
-                    <div class="input-group col-8">
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text" style={{height: '45px'}}>PRODUIT:</span>
+                <div className="row justify-content-center" style={{textAlign: 'center'}}> 
+                <div className="col-4">
+                    <div className="input-group">
+                        <div className="input-group-prepend ">
+                            <span className="input-group-text" style={{height: '45px'}}>PRODUIT:</span>
                         </div>
-                        <textarea class="form-control" style={{height: '45px'}} aria-label="operation" value={this.state.produit} onChange={(e)=>{this.newProd(e)}}></textarea>
+                        <textarea className="form-control" style={{height: '45px'}} aria-label="operation" value={this.state.produit} onChange={(e)=>{this.newProd(e)}}></textarea>
                     </div>
-                    <div className="col-8" style={{height:'10px'}}></div>
-                    <div class="input-group col-8">       
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" style={{height: '45px'}}>ORDER:</span>
+                    <div className="col-4" style={{height:'10px'}}></div>
+                    <div className="input-group col-4">       
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" style={{height: '45px'}}>ORDER:</span>
                         </div>
-                        <textarea class="form-control" style={{height: '45px'}} aria-label="ordre"  value={this.state.of} onChange={(e)=>{this.newOf(e)}} ></textarea>
+                        <textarea className="form-control" style={{height: '45px'}} aria-label="ordre"  value={this.state.of} onChange={(e)=>{this.newOf(e)}} ></textarea>
                     </div>
-                    <button className="btn btn-primary" onClick={()=>{this.startProd()}}><FaIcons.FaHammer  style={{fontSize: '25px'}}/><Link to={"/production/"+this.state.produit+"/"+this.state.of} style={{color: 'aquamarine'}}>START PRODUCTION</Link></button> 
+                    <div  className="row justify-content-center" style={{height:'10px'}}></div>
+                    <button className="btn btn-primary" onClick={()=>{this.startProd()}}><FaIcons.FaHammer  style={{fontSize: '25px'}}/><Link to={"/production/"+this.state.produit+"/"+this.state.of} style={{color: 'aquamarine'}}>Démarrer la production</Link></button> 
+                    <div  className="row justify-content-center" style={{height:'10px'}}></div>
                     <button className="btn btn-primary" hidden={this.state.afficheBtnSuivie} onClick={()=>{this.startProd()}}><FaIcons.FaSearch  style={{fontSize: '25px'}}/><Link to={"/SuivieProduction/"+this.state.produit+"/"+this.state.of} style={{color: 'aquamarine'}}>SUIVIE PRODUCTION</Link></button> 
                 </div>
-             </div>
+             </div></div>
         );
     }
 }

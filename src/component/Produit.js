@@ -52,7 +52,7 @@ class Produit extends Component {
                 </td>
                 <td>
                 <button type="button" class="btn btn-info"><FaIcons.FaSistrix style={{fontSize: '25px'}}/><Link to={this.state.link} style={{color: 'aquamarine'}}>OPERATION</Link></button>
-                <button type="button"  class="btn btn-danger" onClick={()=>this.deleteprod()}><IoIcons.IoTrash  style={{fontSize: '25px'}}/> DELETE</button>
+                <button type="button"  class="btn btn-danger" onClick={()=>this.deleteprod()}style={{marginLeft:'6px'}}><IoIcons.IoTrash  style={{fontSize: '25px'}}/> DELETE</button>
                 </td>
                 </tr>
             

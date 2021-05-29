@@ -70,34 +70,38 @@ var requestOptions = {
   body: raw,
   redirect: 'follow'
 };
-fetch("http://localhost:8070/addprod", requestOptions)
+fetch("http://localhost:8070/app/addprod", requestOptions)
   .then(response => response.text())
   .then(result => {console.log(result);
                 this.getEncours();
+                
                    })
   .catch(error => console.log('error', error));
     }
     render() {
         return (
-            <div class="container">
-                
+            <div>
+               <div style={{height:'50px'}}></div> 
+            <div class="container"> 
                 <br/>
                 <div className="row justify-content-md-center">
+                    <div className='col-8'>
                     <input type="text" placeholder="nom produit" value={this.state.produit} onChange={(e)=>{this.produit(e)}} />
                     <input type="text" placeholder="Of" value={this.state.of} onChange={(e)=>{this.of(e)}} ></input>
-                    <button type="button" className="btn btn-success" onClick={()=>{this.newOf()}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Add OF</button>
-                </div>
+                    <button type="button" className="btn btn-success" onClick={()=>{this.newOf()}} style={{marginLeft:'7px'}}><IoIcons.HiViewGridAdd style={{fontSize: '25px'}}/> Add OF</button>
+                </div><div style={{height:'40px'}}></div>
                 <br></br>
                 <div className="row">
-            {
-                this.state.encours.map((of)=>{
-                    console.log(of);
-                    return <Of produit={of.produit} orderf={of.ordreDeFabrication} composants={of.composants} id={of._id} getall={this.getEncours} />
-                })
-            }
+                {
+                    this.state.encours.map((of)=>{
+                        console.log(of);
+                        return <Of produit={of.produit} orderf={of.ordreDeFabrication} composants={of.composants} id={of._id} getall={this.getEncours} />
+                    })
+                }
             
-                </div>
+                </div></div>
             </div>
+            <div></div></div>
         );
     }
 }

@@ -17,6 +17,7 @@ import ProductionOperations from './pages/ProductionOperations';
 import OperationProd from './pages/OperationProd';
 import VerifSn from './pages/VerifSn';
 import SuivieProd from './pages/SuivieProd';
+import Admin from './pages/Admin';
 class App extends Component {
   constructor(props){
     super(props);
@@ -50,6 +51,7 @@ class App extends Component {
           <Switch>
           <Route path="/" component={Production} exact></Route>
           <Route path="/ADDOf" component={Addof} exact></Route>
+          <Route path="/Admin" component={Admin} exact></Route>
           <Route path="/addcomp" component={Addcomp} exact></Route>
           <Route path="/authentification" component={Auth} exact></Route>
           <Route path="/ListProduit" component={ListProduit} exact></Route>
